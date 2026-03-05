@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: "Inter", sans-serif;
@@ -34,9 +35,11 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--color-surface-2);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary);
   border-radius: 3px;
@@ -71,10 +74,12 @@ body {
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
 }
+
 .input-base:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
+
 .input-base::placeholder {
   color: var(--color-text-muted);
 }
@@ -102,14 +107,17 @@ textarea.input-base {
   transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
+
 .btn-primary:hover:not(:disabled) {
   opacity: 0.92;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
+
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
 }
+
 .btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -131,11 +139,13 @@ textarea.input-base {
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .btn-ghost:hover:not(:disabled) {
   border-color: var(--color-primary);
   color: var(--color-text);
   background: rgba(99, 102, 241, 0.08);
 }
+
 .btn-ghost:disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -182,6 +192,7 @@ textarea.input-base {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -204,6 +215,7 @@ textarea.input-base {
   font-size: 0.8125rem;
   color: var(--color-primary-light);
 }
+
 .tag-chip button {
   background: none;
   border: none;
@@ -214,6 +226,7 @@ textarea.input-base {
   font-size: 14px;
   transition: color 0.15s;
 }
+
 .tag-chip button:hover {
   color: var(--color-error);
 }
@@ -224,9 +237,11 @@ textarea.input-base {
     background: white;
     color: #1a1a1a;
   }
+
   .no-print {
     display: none !important;
   }
+
   .print-container {
     max-width: 100%;
     padding: 0;

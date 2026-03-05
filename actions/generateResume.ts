@@ -10,13 +10,12 @@ function buildSystemPrompt(): string {
 Your task is to create a polished, ATS-optimized professional resume in clean Markdown format.
 
 Follow these rules strictly:
-- Structure: Professional Summary, Work Experience, Education, Skills
-- Use strong action verbs (Led, Built, Reduced, Increased, Managed, Delivered)
-- Quantify achievements wherever possible (e.g., "Reduced load time by 40%")
-- Write in third person, professional tone
-- Make the content compelling enough to stand out to recruiters
-- Tailor the language and keywords to the target job title
-- Output ONLY the resume content in Markdown, no preamble or commentary`;
+- Output ONLY the resume content in Markdown.
+- **IMPORTANT**: Do NOT include the candidate's Name, Email, Phone, LinkedIn, or Location.
+- Structure: Start directly with "## PROFESSIONAL SUMMARY".
+- **Rule**: Every section title MUST start with "## " (double hash mark). Sections: "## PROFESSIONAL SUMMARY", "## SKILLS", "## WORK EXPERIENCE", "## EDUCATION", "## CERTIFICATIONS".
+- Use strong action verbs and quantify achievements.
+- No preamble or commentary.`;
 }
 
 function buildUserPrompt(data: ResumeFormData): string {
