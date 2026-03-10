@@ -22,7 +22,7 @@ const features = [
 export default async function AboutPage() {
     return (
         <PageShell>
-            <div className="min-h-screen pl-16" style={{ background: "var(--color-background)" }}>
+            <div className="min-h-screen" style={{ background: "var(--color-background)" }}>
                 {/* Hero Section */}
                 <div className="max-w-4xl mx-auto px-6 pt-24 pb-16 text-center">
                     <p

@@ -26,7 +26,7 @@ export default async function DashboardPage() {
                     style={{ background: "radial-gradient(ellipse, #c9a96e, transparent 70%)" }} />
             </div>
 
-            <div className="relative z-10 max-w-6xl mx-auto px-8 py-8 pl-16">
+            <div className="relative z-10 max-w-6xl mx-auto px-8 pt-20 pb-8">
                 {/* Header */}
                 <header className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-14 pt-8">
                     <div>

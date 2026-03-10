@@ -23,7 +23,7 @@ export default async function ResumeViewPage({ params }: PageProps) {
 
     return (
         <PageShell>
-            <main className="min-h-screen pb-12 pt-8 pl-16" style={{ background: "#0a0a0a" }}>
+            <main className="min-h-screen pb-12 pt-20" style={{ background: "#0a0a0a" }}>
                 <div className="fixed inset-0 pointer-events-none overflow-hidden no-print z-0">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] opacity-[0.03]"
                         style={{ background: "radial-gradient(ellipse, #c9a96e, transparent 70%)" }} />

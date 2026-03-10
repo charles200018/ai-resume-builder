@@ -1,11 +1,12 @@
 import PageShell from "@/components/layout/PageShell";
 import { templates, TEMPLATE_CATEGORIES } from "@/lib/templates/templateData";
 import Link from "next/link";
+import MiniResumePreview from "@/components/templates/MiniResumePreview";
 
 export default async function TemplatesPage() {
     return (
         <PageShell>
-            <div className="min-h-screen pl-16" style={{ background: "var(--color-background)" }}>
+            <div className="min-h-screen" style={{ background: "var(--color-background)" }}>
                 {/* Header */}
                 <div className="max-w-6xl mx-auto px-6 pt-24 pb-12 text-center">
                     <p
@@ -22,7 +23,7 @@ export default async function TemplatesPage() {
                     </h1>
                     <p className="text-base max-w-xl mx-auto" style={{ color: "var(--color-text-muted)" }}>
                         Browse {templates.length} expertly crafted templates across {TEMPLATE_CATEGORIES.length} categories.
-                        Each template is ATS-optimized and ready to use.
+                        Each preview shows real example content so you know exactly how it will look.
                     </p>
                     <Link
                         href="/builder"
@@ -59,106 +60,15 @@ export default async function TemplatesPage() {
                                 {categoryTemplates.map((template) => (
                                     <div
                                         key={template.id}
-                                        className="group relative overflow-hidden transition-all duration-300"
+                                        className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-black/30"
                                         style={{
                                             border: "1px solid rgba(201,169,110,0.08)",
                                             borderRadius: "2px",
                                         }}
                                     >
-                                        {/* Preview */}
-                                        <div
-                                            className="aspect-[3/4] relative"
-                                            style={{ backgroundColor: template.colors.background }}
-                                        >
-                                            <div className="absolute inset-2 overflow-hidden bg-white shadow-sm">
-                                                <div
-                                                    className={`h-full ${template.layout === "double" || template.layout === "sidebar-left" || template.layout === "sidebar-right" ? "grid grid-cols-3" : ""}`}
-                                                    style={{ fontFamily: template.fontFamily }}
-                                                >
-                                                    {/* Sidebar for double/sidebar layouts */}
-                                                    {(template.layout === "double" || template.layout === "sidebar-left") && (
-                                                        <div className="p-1.5 space-y-1" style={{ backgroundColor: template.colors.primary + "10" }}>
-                                                            <div className="w-5 h-5 rounded-full mx-auto mb-1" style={{ backgroundColor: template.colors.primary + "25" }} />
-                                                            <div className="h-0.5" style={{ backgroundColor: template.colors.primary + "20" }} />
-                                                            <div className="space-y-0.5">
-                                                                <div className="h-[1px] bg-gray-200 w-[85%]" />
-                                                                <div className="h-[1px] bg-gray-200 w-[65%]" />
-                                                                <div className="h-[1px] bg-gray-200 w-[75%]" />
-                                                            </div>
-                                                            <div className="h-0.5 mt-1" style={{ backgroundColor: template.colors.primary + "20" }} />
-                                                            <div className="space-y-0.5">
-                                                                <div className="h-[1px] bg-gray-200 w-[80%]" />
-                                                                <div className="h-[1px] bg-gray-200 w-[55%]" />
-                                                            </div>
-                                                        </div>
-                                                    )}
-
-                                                    {/* Main content */}
-                                                    <div className={`p-1.5 ${template.layout !== "single" ? "col-span-2" : ""}`}>
-                                                        {/* Header */}
-                                                        <div className={`mb-1 ${template.headerStyle === "centered" ? "text-center" : ""}`}>
-                                                            <div
-                                                                className="h-1 mb-[2px]"
-                                                                style={{
-                                                                    backgroundColor: template.colors.primary,
-                                                                    width: template.headerStyle === "centered" ? "55%" : "50%",
-                                                                    margin: template.headerStyle === "centered" ? "0 auto" : undefined,
-                                                                }}
-                                                            />
-                                                            <div
-                                                                className="h-[1px] bg-gray-300"
-                                                                style={{
-                                                                    width: template.headerStyle === "centered" ? "35%" : "30%",
-                                                                    margin: template.headerStyle === "centered" ? "1px auto" : "1px 0",
-                                                                }}
-                                                            />
-                                                        </div>
-
-                                                        <div className="h-[1px] my-1" style={{ backgroundColor: template.colors.secondary + "25" }} />
-
-                                                        {/* Section */}
-                                                        <div className="mb-1">
-                                                            <div className="h-[1px] mb-0.5" style={{ backgroundColor: template.colors.secondary, width: "28%" }} />
-                                                            <div className="h-[1px] bg-gray-300 w-[75%] mb-[1px]" />
-                                                            <div className="h-[1px] bg-gray-200 w-[60%] mb-[1px]" />
-                                                            <div className="h-[1px] bg-gray-200 w-[65%]" />
-                                                        </div>
-
-                                                        {/* Section 2 */}
-                                                        <div className="mb-1">
-                                                            <div className="h-[1px] mb-0.5" style={{ backgroundColor: template.colors.secondary, width: "22%" }} />
-                                                            <div className="h-[1px] bg-gray-300 w-[55%] mb-[1px]" />
-                                                            <div className="h-[1px] bg-gray-200 w-[45%]" />
-                                                        </div>
-
-                                                        {/* Skills */}
-                                                        <div>
-                                                            <div className="h-[1px] mb-0.5" style={{ backgroundColor: template.colors.secondary, width: "18%" }} />
-                                                            <div className="flex gap-[2px] flex-wrap">
-                                                                {[16, 20, 14, 22].map((w, i) => (
-                                                                    <div key={i} className="h-1 rounded-sm" style={{ backgroundColor: template.colors.primary + "12", width: `${w}%` }} />
-                                                                ))}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Right sidebar layout */}
-                                                    {template.layout === "sidebar-right" && (
-                                                        <div className="p-1.5 space-y-1" style={{ backgroundColor: template.colors.primary + "10" }}>
-                                                            <div className="h-0.5" style={{ backgroundColor: template.colors.primary + "20" }} />
-                                                            <div className="space-y-0.5">
-                                                                <div className="h-[1px] bg-gray-200 w-[80%]" />
-                                                                <div className="h-[1px] bg-gray-200 w-[60%]" />
-                                                            </div>
-                                                            <div className="h-0.5 mt-1" style={{ backgroundColor: template.colors.primary + "20" }} />
-                                                            <div className="space-y-0.5">
-                                                                <div className="h-[1px] bg-gray-200 w-[70%]" />
-                                                                <div className="h-[1px] bg-gray-200 w-[50%]" />
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
+                                        {/* Real Example Preview */}
+                                        <div className="relative">
+                                            <MiniResumePreview template={template} />
 
                                             {/* Premium Badge */}
                                             {template.premium && (
