@@ -11,6 +11,7 @@ import PersonalInfoStep from "./steps/PersonalInfoStep";
 import WorkExperienceStep from "./steps/WorkExperienceStep";
 import EducationStep from "./steps/EducationStep";
 import SkillsStep from "./steps/SkillsStep";
+import TemplateSelectionStep from "./steps/TemplateSelectionStep";
 import ReviewStep from "./steps/ReviewStep";
 import FormNavigation from "./FormNavigation";
 
@@ -19,7 +20,8 @@ const STEPS = [
     { id: 2, label: "Experience" },
     { id: 3, label: "Education" },
     { id: 4, label: "Skills" },
-    { id: 5, label: "Review" },
+    { id: 5, label: "Template" },
+    { id: 6, label: "Review" },
 ];
 
 const STEP_COMPONENTS = [
@@ -27,6 +29,7 @@ const STEP_COMPONENTS = [
     WorkExperienceStep,
     EducationStep,
     SkillsStep,
+    TemplateSelectionStep,
     ReviewStep,
 ];
 
@@ -69,6 +72,7 @@ export default function StepController() {
             softSkills: [],
             languages: [],
             targetJobTitle: "",
+            template: "modern-professional",
         },
         mode: "onBlur",
     });
@@ -80,6 +84,7 @@ export default function StepController() {
         ["experiences"],
         ["education"],
         ["targetJobTitle", "technicalSkills", "softSkills", "languages"],
+        [], // Template step (optional field)
         [] // Review step
     ];
 
@@ -118,27 +123,24 @@ export default function StepController() {
 
     return (
         <FormProvider {...methods}>
-            <div className="min-h-screen" style={{ background: "var(--color-surface)" }}>
-                {/* Fixed background blobs */}
-                <div className="fixed inset-0 pointer-events-none overflow-hidden">
+            <div className="relative">
+                {/* Subtle gold glow */}
+                <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
                     <div
-                        className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-10 blur-3xl"
-                        style={{ background: "radial-gradient(circle, #6366f1, transparent)" }}
-                    />
-                    <div
-                        className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full opacity-10 blur-3xl"
-                        style={{ background: "radial-gradient(circle, #a855f7, transparent)" }}
+                        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] opacity-[0.03]"
+                        style={{ background: "radial-gradient(ellipse, #c9a96e, transparent 70%)" }}
                     />
                 </div>
 
-                <div className="relative z-10 max-w-3xl mx-auto px-4 py-12">
+                <div className="relative z-10 max-w-2xl mx-auto px-4 py-16">
                     {/* Header */}
-                    <div className="text-center mb-10 animate-fade-in">
-                        <h1 className="text-3xl font-bold mb-2">
-                            Build Your <span className="gradient-text">AI Resume</span>
+                    <div className="text-center mb-12">
+                        <div className="gold-line mx-auto mb-8" />
+                        <h1 className="font-display text-3xl mb-3" style={{ fontFamily: "var(--font-display)", color: "var(--color-text)" }}>
+                            Craft Your Resume
                         </h1>
-                        <p style={{ color: "var(--color-text-muted)", fontSize: "0.9375rem" }}>
-                            Step {currentStep + 1} of {STEPS.length} — {STEPS[currentStep].label}
+                        <p className="text-xs tracking-[0.2em] uppercase" style={{ color: "var(--color-primary)" }}>
+                            Step {currentStep + 1} of {STEPS.length} &mdash; {STEPS[currentStep].label}
                         </p>
                     </div>
 
@@ -146,17 +148,18 @@ export default function StepController() {
                     <StepIndicator steps={STEPS} currentStep={currentStep} />
 
                     {/* Form card */}
-                    <div className="glass-card p-8 mt-8 animate-fade-in">
+                    <div className="glass-card p-10 mt-10">
                         {serverError && (
                             <div
-                                className="mb-6 p-4 rounded-xl text-sm"
+                                className="mb-6 p-4 text-sm"
                                 style={{
-                                    background: "rgba(239,68,68,0.1)",
-                                    border: "1px solid rgba(239,68,68,0.3)",
-                                    color: "#fca5a5",
+                                    background: "rgba(196, 94, 94, 0.08)",
+                                    border: "1px solid rgba(196, 94, 94, 0.2)",
+                                    color: "#c45e5e",
+                                    borderRadius: "2px",
                                 }}
                             >
-                                ⚠️ {serverError}
+                                {serverError}
                             </div>
                         )}
 

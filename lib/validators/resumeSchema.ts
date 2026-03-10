@@ -69,11 +69,17 @@ export const skillsSchema = z.object({
         .min(2, "Tell the AI what role you're targeting"),
 });
 
+// ── Step 5: Template Selection ────────────────────────────────────────────
+export const templateSchema = z.object({
+    template: z.string().default("modern-professional"),
+});
+
 // ── Combined Master Schema ────────────────────────────────────────────────
 export const resumeFormSchema = personalInfoSchema
     .merge(workExperienceSchema)
     .merge(educationSchema)
-    .merge(skillsSchema);
+    .merge(skillsSchema)
+    .merge(templateSchema);
 
 export type ResumeFormData = z.infer<typeof resumeFormSchema>;
 export type WorkExperienceItem = z.infer<typeof workExperienceItemSchema>;

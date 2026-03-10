@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { Download, Share2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -71,34 +70,33 @@ export default function DownloadButtonClient({
     };
 
     return (
-        <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-5xl mx-auto mb-6 px-4 no-print text-white">
-            <Link href="/builder">
-                <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm font-medium">
-                    <ArrowLeft size={16} />
-                    Back to Editor
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full max-w-5xl mx-auto mb-8 px-4 no-print">
+            <Link href="/dashboard">
+                <button className="btn-ghost text-xs py-2.5 px-5">
+                    <ArrowLeft size={12} />
+                    Back
                 </button>
             </Link>
 
             <div className="flex items-center gap-3 mt-4 sm:mt-0">
                 <button
                     onClick={handleShare}
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm font-medium"
+                    className="btn-ghost text-xs py-2.5 px-4"
                 >
-                    <Share2 size={16} />
+                    <Share2 size={12} />
                     Share
                 </button>
                 <button
                     onClick={() => handlePrint()}
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm font-medium"
+                    className="btn-ghost text-xs py-2.5 px-4"
                 >
-                    <Download size={16} className="rotate-180" />
                     Print
                 </button>
                 <button
                     onClick={handleDownload}
-                    className="flex items-center gap-2 px-6 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors text-sm font-semibold shadow-lg shadow-indigo-500/30"
+                    className="btn-primary text-xs py-2.5 px-6"
                 >
-                    <Download size={18} />
+                    <Download size={12} />
                     Download PDF
                 </button>
             </div>

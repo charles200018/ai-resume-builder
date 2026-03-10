@@ -5,9 +5,12 @@ import remarkGfm from "remark-gfm";
 
 interface ResumePreviewProps {
     content: string;
+    accentColor?: string;
 }
 
-export default function ResumePreview({ content }: ResumePreviewProps) {
+export default function ResumePreview({ content, accentColor }: ResumePreviewProps) {
+    const headingColor = accentColor || undefined;
+
     return (
         <div className="prose prose-sm sm:prose-base max-w-none text-gray-900">
             <ReactMarkdown
@@ -18,8 +21,12 @@ export default function ResumePreview({ content }: ResumePreviewProps) {
                     ),
                     h2: ({ ...props }) => (
                         <div className="mt-8 mb-4">
-                            <h2 className="text-[14pt] font-bold uppercase text-gray-900 tracking-wider mb-1" {...props} />
-                            <div className="w-full h-[1.5px] bg-gray-800" />
+                            <h2
+                                className="text-[14pt] font-bold uppercase tracking-wider mb-1"
+                                style={{ color: headingColor || "#111827" }}
+                                {...props}
+                            />
+                            <div className="w-full h-[1.5px]" style={{ backgroundColor: headingColor || "#1f2937" }} />
                         </div>
                     ),
                     h3: ({ ...props }) => (

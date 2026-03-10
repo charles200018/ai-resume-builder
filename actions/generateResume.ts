@@ -3,7 +3,30 @@
 import { resumeFormSchema, type ResumeFormData } from "@/lib/validators/resumeSchema";
 import { callOpenRouter } from "@/lib/openrouter";
 import { supabaseServer } from "@/lib/supabase/server";
+import { getUser } from "@/lib/supabase/serverClient";
 import type { GenerateResumeResult } from "@/types/resume";
+
+// Simple in-memory rate limiting (use Redis in production)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT = 5; // Max requests per window
+const RATE_WINDOW = 60 * 60 * 1000; // 1 hour in ms
+
+function checkRateLimit(identifier: string): boolean {
+    const now = Date.now();
+    const record = rateLimitMap.get(identifier);
+
+    if (!record || now > record.resetTime) {
+        rateLimitMap.set(identifier, { count: 1, resetTime: now + RATE_WINDOW });
+        return true;
+    }
+
+    if (record.count >= RATE_LIMIT) {
+        return false;
+    }
+
+    record.count++;
+    return true;
+}
 
 function buildSystemPrompt(): string {
     return `You are an expert resume writer and career coach with 15 years of experience. 
@@ -71,7 +94,17 @@ export async function generateResume(
 
     const data = validation.data;
 
-    // 2. Call OpenRouter AI
+    // 2. Get user and apply rate limiting
+    const user = await getUser();
+    const rateLimitKey = user?.id || data.email; // Use user ID or email as identifier
+    
+    if (!checkRateLimit(rateLimitKey)) {
+        return {
+            error: "Rate limit exceeded. You can generate up to 5 resumes per hour. Please try again later.",
+        };
+    }
+
+    // 3. Call OpenRouter AI
     let generatedText: string;
     const modelUsed = "openrouter/free";
 
@@ -93,7 +126,7 @@ export async function generateResume(
         };
     }
 
-    // 3. Save to Supabase
+    // 4. Save to Supabase
     const { data: inserted, error: dbError } = await supabaseServer
         .from("resumes")
         .insert({
@@ -103,7 +136,7 @@ export async function generateResume(
             full_name: data.fullName,
             job_title: data.targetJobTitle,
             status: "generated",
-            user_id: null, // anonymous — update when auth is added
+            user_id: user?.id || null, // Use authenticated user ID or null for anonymous
         })
         .select("id")
         .single();

@@ -50,13 +50,27 @@ Build a professional, ATS-optimized resume in minutes with the power of **Gemini
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
    OPENROUTER_API_KEY=your_openrouter_api_key
+   DATABASE_URL=your_postgres_connection_string
    ```
 
-4. **Initialize Database**:
-   Run the provided schema in your Supabase SQL editor (see `setup_schema.sql` if available locally).
+4. **Set up Google Authentication** (Required):
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select existing one
+   - Enable Google+ API
+   - Go to Credentials → Create OAuth 2.0 Client ID
+   - Add authorized redirect URI: `https://YOUR_SUPABASE_PROJECT.supabase.co/auth/v1/callback`
+   - Copy the Client ID and Client Secret
+   - In Supabase Dashboard → Authentication → Providers → Google:
+     - Enable Google provider
+     - Add your Client ID and Client Secret
+   - For local development, also add: `http://localhost:3000/auth/callback`
 
-5. **Run the development server**:
+5. **Initialize Database**:
+   Run the provided schema in your Supabase SQL editor (see `setup_schema.sql`).
+
+6. **Run the development server**:
    ```bash
    npm run dev
    ```

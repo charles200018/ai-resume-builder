@@ -1,138 +1,87 @@
 import Link from "next/link";
 import {
-    FileText,
-    Sparkles,
-    Download,
-    Shield,
     ArrowRight,
-    Zap,
-    Star,
+    CheckCircle,
 } from "lucide-react";
+import PageShell from "@/components/layout/PageShell";
 
-export default function HomePage() {
+export default async function HomePage() {
     return (
-        <main className="min-h-screen overflow-hidden" style={{ background: "var(--color-surface)" }}>
-            {/* Animated background */}
+        <PageShell>
+        <main className="min-h-screen overflow-hidden" style={{ background: "#0a0a0a" }}>
+            {/* Subtle warm glow */}
             <div className="fixed inset-0 pointer-events-none">
                 <div
-                    className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl"
-                    style={{ background: "radial-gradient(circle, #6366f1, transparent)" }}
-                />
-                <div
-                    className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl"
-                    style={{ background: "radial-gradient(circle, #a855f7, transparent)" }}
+                    className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] opacity-[0.04]"
+                    style={{ background: "radial-gradient(ellipse, #c9a96e, transparent 70%)" }}
                 />
             </div>
 
-            {/* Nav */}
-            <nav className="relative z-10 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
-                <div className="flex items-center gap-2">
-                    <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center"
-                        style={{ background: "linear-gradient(135deg, #6366f1, #a855f7)" }}
-                    >
-                        <FileText size={16} color="white" />
-                    </div>
-                    <span className="font-bold text-lg" style={{ color: "var(--color-text)" }}>
-                        ResumeAI
-                    </span>
-                </div>
-                <Link href="/builder">
-                    <button className="btn-primary">
-                        Get Started Free
-                        <ArrowRight size={16} />
-                    </button>
-                </Link>
-            </nav>
-
             {/* Hero */}
-            <section className="relative z-10 text-center px-6 pt-20 pb-32 max-w-4xl mx-auto animate-fade-in">
-                <div
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8"
-                    style={{
-                        background: "rgba(99, 102, 241, 0.1)",
-                        border: "1px solid rgba(99, 102, 241, 0.25)",
-                        color: "var(--color-primary-light)",
-                    }}
-                >
-                    <Sparkles size={14} />
-                    Powered by Gemini 2.0 AI
-                </div>
+            <section className="relative z-10 text-center px-6 pt-24 pb-32 max-w-4xl mx-auto">
+                {/* Thin gold line */}
+                <div className="gold-line mx-auto mb-12" />
 
-                <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-                    Build Your{" "}
-                    <span className="gradient-text">Perfect Resume</span>{" "}
-                    in Minutes
+                <p className="text-xs tracking-[0.3em] uppercase mb-8" style={{ color: "var(--color-primary)" }}>
+                    Artificial Intelligence &middot; Resume Crafting
+                </p>
+
+                <h1 className="font-display text-5xl md:text-7xl font-normal mb-8 leading-[1.1]" style={{ fontFamily: "var(--font-display)", color: "var(--color-text)" }}>
+                    The Art of the
+                    <br />
+                    <span className="gradient-text italic">Perfect Resume</span>
                 </h1>
 
-                <p className="text-xl mb-10" style={{ color: "var(--color-text-muted)", maxWidth: "580px", margin: "0 auto 2.5rem" }}>
-                    Fill in your details, and our AI crafts a professional,
-                    ATS-optimized resume tailored to your target role — no designer needed.
+                <p className="text-base leading-relaxed mb-14 max-w-lg mx-auto" style={{ color: "var(--color-text-muted)" }}>
+                    Crafted by AI, designed for distinction. Your professional narrative,
+                    elevated to its finest expression.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Link href="/builder">
-                        <button className="btn-primary" style={{ padding: "14px 32px", fontSize: "1rem" }}>
-                            <Sparkles size={18} />
-                            Create My Resume
+                        <button className="btn-primary" style={{ padding: "16px 48px" }}>
+                            Begin Crafting
+                            <ArrowRight size={16} />
+                        </button>
+                    </Link>
+                    <Link href="/dashboard">
+                        <button className="btn-ghost" style={{ padding: "16px 36px" }}>
+                            View Collection
                         </button>
                     </Link>
                 </div>
 
-                {/* Social proof */}
-                <div className="mt-12 flex items-center justify-center gap-1" style={{ color: "#f59e0b" }}>
-                    {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={16} fill="currentColor" />
-                    ))}
-                    <span className="ml-2 text-sm" style={{ color: "var(--color-text-muted)" }}>
-                        Trusted by thousands of job seekers
-                    </span>
-                </div>
+                {/* Divider */}
+                <div className="luxury-divider mt-24 mb-20 max-w-xs mx-auto" />
             </section>
 
             {/* Features */}
-            <section className="relative z-10 max-w-6xl mx-auto px-6 pb-24">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <section className="relative z-10 max-w-5xl mx-auto px-8 pb-32">
+                <p className="text-xs tracking-[0.3em] uppercase text-center mb-16" style={{ color: "var(--color-primary)" }}>
+                    The Experience
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "rgba(201, 169, 110, 0.08)" }}>
                     {[
                         {
-                            icon: <Sparkles size={24} />,
-                            title: "AI-Powered Writing",
-                            desc: "Gemini 2.0 crafts compelling bullet points and summaries tailored to your target role.",
+                            num: "01",
+                            title: "AI Intelligence",
+                            desc: "Gemini 2.0 interprets your career and articulates it with precision and elegance.",
                         },
                         {
-                            icon: <Shield size={24} />,
-                            title: "ATS Optimized",
-                            desc: "Formatted to pass Applicant Tracking Systems at Fortune 500 companies.",
+                            num: "02",
+                            title: "ATS Mastery",
+                            desc: "Engineered to navigate Applicant Tracking Systems at the world's leading firms.",
                         },
                         {
-                            icon: <Download size={24} />,
-                            title: "Instant PDF Export",
-                            desc: "Download a print-ready PDF resume with one click. No watermarks, no subscriptions.",
-                        },
-                        {
-                            icon: <Zap size={24} />,
-                            title: "5-Minute Process",
-                            desc: "Our guided multi-step form makes resume building fast and stress-free.",
-                        },
-                        {
-                            icon: <FileText size={24} />,
-                            title: "Saved to Cloud",
-                            desc: "Your resumes are securely stored — access and re-download anytime.",
-                        },
-                        {
-                            icon: <Star size={24} />,
-                            title: "Professional Templates",
-                            desc: "Clean, modern design that makes a great first impression on hiring managers.",
+                            num: "03",
+                            title: "Instant Export",
+                            desc: "One touch. A flawless PDF, ready for the opportunity that awaits.",
                         },
                     ].map((feat) => (
-                        <div key={feat.title} className="glass-card p-6 hover:border-indigo-500/40 transition-all duration-300" style={{ borderColor: "var(--color-border)" }}>
-                            <div
-                                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                                style={{ background: "rgba(99, 102, 241, 0.15)", color: "var(--color-primary-light)" }}
-                            >
-                                {feat.icon}
-                            </div>
-                            <h3 className="font-semibold text-lg mb-2" style={{ color: "var(--color-text)" }}>
+                        <div key={feat.num} className="p-10" style={{ background: "#0a0a0a" }}>
+                            <span className="text-xs tracking-[0.2em]" style={{ color: "var(--color-primary)" }}>{feat.num}</span>
+                            <h3 className="font-display text-xl mt-4 mb-3" style={{ fontFamily: "var(--font-display)", color: "var(--color-text)" }}>
                                 {feat.title}
                             </h3>
                             <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
@@ -143,27 +92,52 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Promises */}
+            <section className="relative z-10 max-w-3xl mx-auto px-8 pb-32">
+                <div className="luxury-divider mb-16" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
+                    {[
+                        "10 curated professional templates",
+                        "Real-time ATS score analysis",
+                        "Secure cloud storage",
+                        "No watermarks, ever",
+                        "Guided step-by-step process",
+                        "Completely free to use",
+                    ].map((item) => (
+                        <div key={item} className="flex items-center gap-3">
+                            <CheckCircle size={14} style={{ color: "var(--color-primary)", flexShrink: 0 }} />
+                            <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>{item}</span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
             {/* CTA */}
-            <section className="relative z-10 text-center px-6 pb-24">
-                <div
-                    className="max-w-2xl mx-auto glass-card p-12"
-                    style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.1))" }}
-                >
-                    <h2 className="text-3xl font-bold mb-4">
-                        Ready to land your <span className="gradient-text">dream job?</span>
+            <section className="relative z-10 text-center px-8 pb-32">
+                <div className="max-w-2xl mx-auto">
+                    <div className="gold-line mx-auto mb-10" />
+                    <h2 className="font-display text-3xl md:text-4xl mb-4" style={{ fontFamily: "var(--font-display)", color: "var(--color-text)" }}>
+                        Your next chapter begins here
                     </h2>
-                    <p className="mb-8" style={{ color: "var(--color-text-muted)" }}>
-                        Create your AI-powered resume in under 5 minutes.
+                    <p className="text-sm mb-10" style={{ color: "var(--color-text-muted)" }}>
+                        Every great career move starts with a great resume.
                     </p>
                     <Link href="/builder">
-                        <button className="btn-primary" style={{ padding: "14px 32px", fontSize: "1rem" }}>
-                            <Sparkles size={18} />
-                            Start Building Now — It&apos;s Free
-                            <ArrowRight size={18} />
+                        <button className="btn-primary" style={{ padding: "16px 48px" }}>
+                            Create Your Resume
                         </button>
                     </Link>
                 </div>
             </section>
+
+            {/* Footer */}
+            <footer className="relative z-10 py-8 text-center">
+                <div className="luxury-divider max-w-xs mx-auto mb-8" />
+                <p className="text-xs tracking-[0.15em]" style={{ color: "rgba(138, 133, 120, 0.5)" }}>
+                    &copy; {new Date().getFullYear()} RESUME AI
+                </p>
+            </footer>
         </main>
+        </PageShell>
     );
 }

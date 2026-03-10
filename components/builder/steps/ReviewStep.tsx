@@ -20,8 +20,8 @@ export default function ReviewStep() {
             </div>
 
             {/* Personal Info Summary */}
-            <section className="p-5 rounded-xl border border-indigo-500/20 bg-indigo-500/5">
-                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary-light)" }}>
+            <section className="p-5" style={{ border: "1px solid rgba(201,169,110,0.08)", background: "rgba(201,169,110,0.02)", borderRadius: "2px" }}>
+                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary)" }}>
                     <User size={18} />
                     Personal Information
                 </h3>
@@ -46,8 +46,8 @@ export default function ReviewStep() {
             </section>
 
             {/* Experience Summary */}
-            <section className="p-5 rounded-xl border border-indigo-500/20 bg-indigo-500/5">
-                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary-light)" }}>
+            <section className="p-5" style={{ border: "1px solid rgba(201,169,110,0.08)", background: "rgba(201,169,110,0.02)", borderRadius: "2px" }}>
+                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary)" }}>
                     <Briefcase size={18} />
                     Work Experience
                 </h3>
@@ -65,8 +65,8 @@ export default function ReviewStep() {
             </section>
 
             {/* Education Summary */}
-            <section className="p-5 rounded-xl border border-indigo-500/20 bg-indigo-500/5">
-                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary-light)" }}>
+            <section className="p-5" style={{ border: "1px solid rgba(201,169,110,0.08)", background: "rgba(201,169,110,0.02)", borderRadius: "2px" }}>
+                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary)" }}>
                     <GraduationCap size={18} />
                     Education
                 </h3>
@@ -83,8 +83,8 @@ export default function ReviewStep() {
             </section>
 
             {/* Skills Summary */}
-            <section className="p-5 rounded-xl border border-indigo-500/20 bg-indigo-500/5">
-                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary-light)" }}>
+            <section className="p-5" style={{ border: "1px solid rgba(201,169,110,0.08)", background: "rgba(201,169,110,0.02)", borderRadius: "2px" }}>
+                <h3 className="font-semibold flex items-center gap-2 mb-4" style={{ color: "var(--color-primary)" }}>
                     <Target size={18} />
                     Skills &amp; Target Role
                 </h3>
@@ -97,7 +97,7 @@ export default function ReviewStep() {
                         <span className="block opacity-60 text-xs uppercase tracking-wider mb-1">Tech Skills</span>
                         <div className="flex flex-wrap gap-1 mt-1">
                             {data.technicalSkills.map((s) => (
-                                <span key={s} className="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 text-xs">{s}</span>
+                                <span key={s} className="px-2 py-0.5 text-xs" style={{ background: "rgba(201,169,110,0.1)", color: "var(--color-primary)", borderRadius: "2px" }}>{s}</span>
                             ))}
                         </div>
                     </div>

@@ -23,14 +23,14 @@ export default function FormNavigation({
     const isFirstStep = currentStep === 0;
 
     return (
-        <div className="flex items-center justify-between mt-8 pt-6" style={{ borderTop: "1px solid var(--color-border)" }}>
+        <div className="flex items-center justify-between mt-10 pt-8" style={{ borderTop: "1px solid rgba(201, 169, 110, 0.06)" }}>
             <button
                 type="button"
                 onClick={onPrev}
                 disabled={isFirstStep}
                 className="btn-ghost"
             >
-                <ArrowLeft size={16} />
+                <ArrowLeft size={14} />
                 Previous
             </button>
 
@@ -40,17 +40,17 @@ export default function FormNavigation({
                     onClick={onSubmit}
                     disabled={isGenerating}
                     className="btn-primary"
-                    style={{ padding: "12px 28px", fontSize: "0.9375rem" }}
+                    style={{ padding: "14px 36px" }}
                 >
                     {isGenerating ? (
                         <>
                             <span className="spinner" />
-                            Generating Resume…
+                            Generating…
                         </>
                     ) : (
                         <>
-                            <Sparkles size={18} />
-                            Generate My Resume
+                            Generate Resume
+                            <Sparkles size={14} />
                         </>
                     )}
                 </button>
@@ -60,8 +60,8 @@ export default function FormNavigation({
                     onClick={onNext}
                     className="btn-primary"
                 >
-                    Next Step
-                    <ArrowRight size={16} />
+                    Continue
+                    <ArrowRight size={14} />
                 </button>
             )}
         </div>

@@ -1,7 +1,5 @@
 "use client";
 
-import { CheckCircle } from "lucide-react";
-
 interface Step {
     id: number;
     label: string;
@@ -24,32 +22,38 @@ export default function StepIndicator({ steps, currentStep }: StepIndicatorProps
                         <div className="flex flex-col items-center flex-1">
                             {/* Circle */}
                             <div
-                                className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300"
+                                className="w-8 h-8 flex items-center justify-center text-xs font-medium transition-all duration-500"
                                 style={{
                                     background: isCompleted
-                                        ? "var(--color-success)"
+                                        ? "var(--color-primary)"
                                         : isActive
-                                            ? "linear-gradient(135deg, #6366f1, #a855f7)"
-                                            : "rgba(255,255,255,0.06)",
-                                    color: isCompleted || isActive ? "white" : "var(--color-text-muted)",
-                                    border: isActive ? "none" : isCompleted ? "none" : "1px solid var(--color-border)",
-                                    boxShadow: isActive ? "0 0 20px rgba(99,102,241,0.4)" : "none",
-                                    transform: isActive ? "scale(1.1)" : "scale(1)",
+                                            ? "transparent"
+                                            : "transparent",
+                                    color: isCompleted
+                                        ? "#0a0a0a"
+                                        : isActive
+                                            ? "var(--color-primary)"
+                                            : "rgba(138, 133, 120, 0.4)",
+                                    border: isActive
+                                        ? "1px solid var(--color-primary)"
+                                        : isCompleted
+                                            ? "1px solid var(--color-primary)"
+                                            : "1px solid rgba(201, 169, 110, 0.1)",
+                                    borderRadius: "2px",
                                 }}
                             >
-                                {isCompleted ? <CheckCircle size={18} /> : index + 1}
+                                {isCompleted ? "\u2713" : index + 1}
                             </div>
 
                             {/* Label */}
                             <span
-                                className="text-xs mt-1 text-center hidden sm:block"
+                                className="text-[10px] mt-2 text-center hidden sm:block tracking-[0.1em] uppercase"
                                 style={{
                                     color: isActive
-                                        ? "var(--color-primary-light)"
+                                        ? "var(--color-primary)"
                                         : isCompleted
-                                            ? "var(--color-success)"
-                                            : "var(--color-text-muted)",
-                                    fontWeight: isActive ? 600 : 400,
+                                            ? "var(--color-primary)"
+                                            : "rgba(138, 133, 120, 0.4)",
                                     transition: "color 0.3s",
                                 }}
                             >
@@ -63,9 +67,9 @@ export default function StepIndicator({ steps, currentStep }: StepIndicatorProps
                                 className="h-px flex-1 transition-all duration-500"
                                 style={{
                                     background: isCompleted
-                                        ? "var(--color-success)"
-                                        : "var(--color-border)",
-                                    marginBottom: "18px",
+                                        ? "rgba(201, 169, 110, 0.3)"
+                                        : "rgba(201, 169, 110, 0.06)",
+                                    marginBottom: "24px",
                                 }}
                             />
                         )}
